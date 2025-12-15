@@ -39,8 +39,19 @@ def max_index(X):
     """
     i = 0
     j = 0
-
-    # TODO
+    max_val=0
+    if not isinstance(X,np.ndarray):
+        raise ValueError
+    if (X.ndim)!=2 :
+        raise ValueError
+    #we're looping on eaxh row and each column to check if the number 
+    #if greater than the last one encountered : if so, set the new indexes
+    for k in range(len(X)):
+        for l in range(len(X[k])):
+            if X[k][l]>max_val:
+                i=k
+                j=l
+                max_val=X[k][l]
 
     return i, j
 
@@ -62,6 +73,9 @@ def wallis_product(n_terms):
     pi : float
         The approximation of order `n_terms` of pi using the Wallis product.
     """
-    # XXX : The n_terms is an int that corresponds to the number of
-    # terms in the product. For example 10000.
-    return 0.
+    prod=1
+    for n in range(1,n_terms+1):
+        new_term=(4*(n**2))/(4*(n**2)-1)
+        prod*=new_term
+    return prod*2
+
